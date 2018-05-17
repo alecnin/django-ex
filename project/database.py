@@ -21,12 +21,12 @@ def config():
         name = os.path.join(settings.BASE_DIR, 'db.postgresql_psycopg2')
     return {
         'ENGINE': engine,
-        'NAME': 'django_db',
-        'USER': 'alex_matveenko',
-        'PASSWORD': 'maxBC123',
-        #'NAME': name,
-        #'USER': os.getenv('DATABASE_USER'),
-        #'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        #'NAME': 'django_db',
+        #'USER': 'alex_matveenko',
+        #'PASSWORD': 'maxBC123',
+        'NAME': name,
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('{}_SERVICE_HOST'.format(service_name)),
         'PORT': os.getenv('{}_SERVICE_PORT'.format(service_name)),
     }
