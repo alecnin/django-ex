@@ -13,17 +13,20 @@ engines = {
 def config():
     service_name = os.getenv('DATABASE_SERVICE_NAME', '').upper().replace('-', '_')
     if service_name:
-        engine = engines.get(os.getenv('DATABASE_ENGINE'), engines['sqlite'])
+        engine = engines.get(os.getenv('DATABASE_ENGINE'), engines['postgresql'])
     else:
-        engine = engines['sqlite']
+        engine = engines['postgresql']
     name = os.getenv('DATABASE_NAME')
-    if not name and engine == engines['sqlite']:
-        name = os.path.join(settings.BASE_DIR, 'db.sqlite3')
+    if not name and engine == engines['postgresql']:
+        name = os.path.join(settings.BASE_DIR, 'db.postgresql_psycopg2')
     return {
         'ENGINE': engine,
-        'NAME': name,
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'NAME': 'django_db',
+        'USER': 'alex_matveenko',
+        'PASSWORD': 'maxBC123',
+        #'NAME': name,
+        #'USER': os.getenv('DATABASE_USER'),
+        #'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('{}_SERVICE_HOST'.format(service_name)),
         'PORT': os.getenv('{}_SERVICE_PORT'.format(service_name)),
     }
