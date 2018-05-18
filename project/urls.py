@@ -4,16 +4,18 @@ from django.contrib import admin
 from welcome import views
 from rest_framework import routers
 
-urlpatterns = [
-
-    url(r'^$', views.index),
-    url(r'^health$', views.health),
-    url(r'^admin/', include(admin.site.urls)),
-]
 
 router = routers.DefaultRouter()
 router.register(r'session', views.SessionViewSet)
 router.register(r'token', views.TokenViewSet)
+
+
+urlpatterns = [
+
+    url(r'^', include(router.urls)),
+
+]
+
 
 if settings.DEBUG:
     import debug_toolbar
